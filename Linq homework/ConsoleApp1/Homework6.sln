@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqHomework", "ConsoleApp1\LinqHomework.csproj", "{7A693FCE-389D-4A32-84BC-3F38578CF3B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1Homework", "Task1Homework\Task1Homework.csproj", "{742F8281-70AE-46D1-B18C-36F73F8730EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A693FCE-389D-4A32-84BC-3F38578CF3B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A693FCE-389D-4A32-84BC-3F38578CF3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A693FCE-389D-4A32-84BC-3F38578CF3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A693FCE-389D-4A32-84BC-3F38578CF3B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742F8281-70AE-46D1-B18C-36F73F8730EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742F8281-70AE-46D1-B18C-36F73F8730EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742F8281-70AE-46D1-B18C-36F73F8730EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742F8281-70AE-46D1-B18C-36F73F8730EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC92A80F-F557-461F-BF31-81FB8AB164A3}
+	EndGlobalSection
+EndGlobal

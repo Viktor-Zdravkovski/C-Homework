@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LinqHomework.Enums
+{
+    public enum ProductCategory
+    {
+        Smartphones = 1,
+        Laptops = 2,
+        Fragrances = 3,
+        Skincare = 4,
+        Groceries = 5,
+        HomeDecoration = 6
+    }
+}
