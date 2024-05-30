@@ -201,3 +201,96 @@ SELECT *
 FROM [dbo].[Teacher]
 WHERE LEN(FirstName) < 5 AND LEFT(FirstName, 3) = LEFT(LastName, 3)
 
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+USE SEDC_ACADEMY_HOMEWORK
+GO
+-- 30.05.2024 Homework
+--Create new procedure called CreateGrade;
+
+-- Procedure should create only Grade header info (not Grade Details);
+
+-- Procedure should return the total number of grades in the system for
+--the Student on input (from the CreateGrade);
+
+-- Procedure should return second resultset with the MAX Grade of all
+--grades for the Student and Teacher on input (regardless the Course).
+CREATE OR ALTER PROCEDURE dbo.USP_CreateGrade
+(
+	@StudentId INT,
+	@TeacherId INT,
+	@Grade INT,
+	@Comment NVARCHAR(200),
+	@CreateDate DATE,
+	@GradeCount INT OUT
+)
+AS
+BEGIN
+	INSERT INTO dbo.Grade(StudentID, TeacherID, Grade, Comment, CreatedDate)
+	VALUES (@StudentId, @TeacherId, @Grade, @Comment, @CreateDate)
+	SELECT SCOPE_IDENTITY() AS LastStudent
+	SELECT s.FirstName ,COUNT(g.StudentID) AS TotalGrades
+	FROM dbo.Grade g
+	JOIN dbo.Student s ON s.ID = g.StudentID
+	GROUP BY 
+	g.StudentID, s.FirstName
+
+	SELECT MAX(g.Grade) AS MaxGrade
+	FROM dbo.Grade g
+	WHERE g.StudentID = @StudentId AND TeacherID = @TeacherId
+END
+  
+DECLARE @GradeCounted INT
+EXEC USP_CreateGrade
+	@StudentId = 12,
+	@TeacherId = 32,
+	@Grade = 5,
+	@Comment = 'Odlichen',
+	@CreateDate = '2015-07-02',
+	@GradeCount = @GradeCounted OUT
+
+SELECT @GradeCounted AS Grades
+GO
+-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--Create new procedure called CreateGradeDetail;
+
+-- Procedure should add details for specific Grade (new record for new
+--AchievementTypeID, Points, MaxPoints, Date for specific Grade);
+
+-- Output from this procedure should be resultset with SUM of
+--GradePoints calculated with formula
+
+-- AchievementPoints/AchievementMaxPoints*ParticipationRate for
+--specific Grade
+CREATE OR ALTER PROCEDURE dbo.USP_CreateGradeDetail
+(
+	@AchievementTypeID INT,
+	@AchievementPoints SMALLINT,
+	@AchievementMaxPoints SMALLINT,
+	@AchievementDate DATE,
+	@GradeID INT OUT
+)
+AS
+BEGIN
+	INSERT INTO [dbo].[GradeDetails](AchievementTypeID, AchievementPoints, AchievementMaxPoints, AchievementDate, GradeID)
+	VALUES (@AchievementTypeId, @AchievementPoints, @AchievementMaxPoints, @AchievementDate, @GradeId)
+	SELECT gd.GradeID ,SUM((CAST(gd.AchievementPoints AS DECIMAL(10, 2)) / (CAST(gd.AchievementMaxPoints AS DECIMAL(10, 2)))) * achT.ParticipationRate) AS SumOfGrades
+	-- iskreno Sum() go iskoristiv chatGPT poshto mi vrakjashe 0
+    FROM dbo.GradeDetails gd
+	JOIN dbo.AchievementType achT ON gd.AchievementTypeID = achT.ID
+	GROUP BY
+	gd.GradeID
+	ORDER BY gd.GradeID ASC
+END
+
+DECLARE @CreatedCreation INT
+EXEC dbo.USP_CreateGradeDetail
+	@AchievementTypeID = 12,
+	@AchievementPoints = 42,
+	@AchievementMaxPoints = 32,
+	@AchievementDate = '2015-09-08',
+	@GradeID = @CreatedCreation OUT
+
+SELECT @CreatedCreation AS Creation
