@@ -1,0 +1,33 @@
+﻿@using global::BurgerShop.Dto.ViewModels;
+@model CreateOrderVM
+
+<h2>New Order</h2>
+
+@if (ViewBag.Error != null)
+{
+        <h5 class="alert alert-warning">@ViewBag.Error</h5>
+}
+
+<form asp-controller="Order" asp-action="AddOrder" method="post">
+    <div class="md-3">
+        <label asp-for="OrderName" class="form-label">Name</label>
+        <input asp-for="OrderName" class="form-control" />
+    </div>
+    <div class="md-3">
+        <label asp-for="OrderId" class="form-label">Order</label>
+        <select asp-for="OrderId" class="form-select" asp-items="@(new SelectList(ViewBag.Orders, "Id", "Name"))">
+            <option value="0">None</option>
+        </select>
+    </div>
+    <div class="md-3">
+        <label asp-for="OrderDate" class="form-label">Due Date</label>
+        <input asp-for="OrderDate" class="form-control" />
+    </div>
+    <div class="md-3">
+        <label asp-for="Burgers" class="form-label">Burgers</label>
+        <select asp-for="Burgers" class="form-select" asp-items="@(new SelectList(ViewBag.Burgers, "Id", "Name"))">
+            <option value="0">None</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Create</button>
+</form>

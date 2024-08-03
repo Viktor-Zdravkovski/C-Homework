@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BurgerDto>
+<div class="row">
+	<div class="col-md-12">
+		@Html.Partial("~/Views/Burger/Partial/_FilterPartial.cshtml", (FilterDto)ViewBag.Filter);
+	</div>
+</div>
+
+<div class="row">
+	<div class = "col-md-12">
+		<table class = "table table-bordered table-striped mt-2">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>IsVegan</th>
+					<th>IsVegetarian</th>
+					<th>HasFries</th>
+				</tr>
+			</thead>
+			<tbody>
+				<form asp-controller="Burger" asp-action="Burgerovi" method="post">
+					@foreach (BurgerDto burger in Model)
+					{
+							<td>@burger.Name</td>
+							<td>@burger.Price</td>
+							<td>@burger.IsVegan</td>
+							<td>@burger.IsVegetarian</td>
+							<td>@burger.HasFries</td>
+					}
+				</form>
+			</tbody>
+		</table>
+		<form asp-action="RemoveBurger" method="post">
+			<a asp-action="AddBurger" class="btn btn-outline-primary">Create Burger</a>
+			<button type="submit" class="btn btn-outline-danger">Remove Burger</button>
+		</form>
+	</div>
+</div>

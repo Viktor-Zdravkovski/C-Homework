@@ -1,0 +1,41 @@
+﻿@using global::BurgerShop.Dto.ViewModels;
+@model CreateBurgerVM
+
+<h2> New Burger </h2>
+
+@if (ViewBag.Error != null)
+{
+		<h5 class = "alert alert-warning">@ViewBag.Error</h5>
+}
+
+<form asp-controller="Burger" asp-action="NewBurger" method="post">
+	<div class= "md-3">
+		<label asp-for="Name" class = "form-label">Name</label>
+		<input asp-for="Name" class="form-control" />
+	</div>
+	<div class= "md-3">
+		<label asp-for="BurgerId" class="form-label">Burger</label>
+		<select asp-for="BurgerId" class="form-select" asp-items="@(new SelectList(ViewBag.Burgers, "Id", "Name"))">
+			<option value="0">None</option>
+		</select>
+	</div>
+	<div class= "md-3">
+		<label asp-for="HasFires" class="form-label">Fries</label>
+		<select asp-for="HasFires" class="form-select" asp-items="@(new SelectList(ViewBag.HasFries, "Yes", "No"))">
+			<option value="0">None</option>
+		</select>
+	</div>
+	<div class= "md-3">
+		<label asp-for="IsVegan" class="form-label">Vegan</label>
+		<select asp-for="IsVegan" class="form-select" asp-items="@(new SelectList(ViewBag.IsVegan, "Yes", "No"))">
+			<option value="0">None</option>
+		</select>
+	</div>
+	<div class= "md-3">
+		<label asp-for="IsVegetarian" class="form-label">IsVegetarian</label>
+		<select asp-for="IsVegetarian" class="form-select" asp-items="@(new SelectList(ViewBag.IsVegan, "Yes", "No"))">
+			<option value="0">None</option>
+		</select>
+	</div>
+	<button type="submit" class="btn btn-outline-primary">Create</button>
+</form>

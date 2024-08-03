@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OrderDto>
+<div class="row">
+	<div class="col-md-12">
+		@Html.Partial("~/Views/Order/Partial/_FilterPartial.cshtml", (FilterDto)ViewBag.Filter);
+	</div>
+</div>
+
+<div class="row">
+	<div class = "col-md-12">
+		<table class = "table table-bordered table-striped mt-2">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+					<th>IsDelivered</th>
+					<th>Burgers</th>
+					<th>Locations</th>
+				</tr>
+			</thead>
+			<tbody>
+				<form asp-controller="Order" asp-action="Orderovi" method="post">
+					@foreach (OrderDto order in Model)
+					{
+						<td>@order.FullName</td>
+						<td>@order.Address</td>
+						<td>@order.IsDelivered</td>
+						<td>@order.Burgers</td>
+						<td>@order.Location</td>
+
+					}
+				</form>
+			</tbody>
+		</table>
+		<form asp-action="RemoveOrder" method="post">
+			<a asp-action="AddOrder" class="btn btn-outline-primary">Create Order</a>
+			<button type="submit" class="btn btn-outline-danger">Remove Order</button>
+		</form>
+	</div>
+</div>

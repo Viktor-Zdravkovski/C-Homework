@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BurgerShop.DataAccess\BurgerShop.DataAccess.csproj" />
+    <ProjectReference Include="..\BurgerShop.Domain\BurgerShop.Domain.csproj" />
+    <ProjectReference Include="..\BurgerShop.Dto\BurgerShop.Dto.csproj" />
+    <ProjectReference Include="..\BurgerShop.Mapper\BurgerShop.Mapper.csproj" />
+  </ItemGroup>
+
+</Project>
