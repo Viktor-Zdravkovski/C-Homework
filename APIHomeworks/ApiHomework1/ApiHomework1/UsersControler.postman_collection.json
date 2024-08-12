@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "add222a9-6f79-4a3c-b3a5-e5d947ccd5ba",
+		"name": "UsersControler",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37555502"
+	},
+	"item": [
+		{
+			"name": "AddUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"Radovan\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7116/api/Users/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7116",
+					"path": [
+						"api",
+						"Users",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7116/api/Users/getallusers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7116",
+					"path": [
+						"api",
+						"Users",
+						"getallusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"Radovan\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7116/api/Users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7116",
+					"path": [
+						"api",
+						"Users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
