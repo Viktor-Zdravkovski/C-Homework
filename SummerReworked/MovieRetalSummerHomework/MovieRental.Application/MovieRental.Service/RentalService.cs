@@ -16,8 +16,21 @@ namespace MovieRental.Service
 
         public void CreateRental(Rental rental)
         {
-            _rentalRepository.Add(rental);
-            _rentalRepository.SaveChanges();
+            //_rentalRepository.Add(rental);
+            //_rentalRepository.SaveChanges();
+            try
+            {
+                // Optional: Validate the rental object before adding
+                // Example: if (rental == null) throw new ArgumentNullException(nameof(rental));
+
+                _rentalRepository.Add(rental);
+                _rentalRepository.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception as needed
+                throw new InvalidOperationException("An error occurred while creating the rental.", ex);
+            }
         }
     }
 }

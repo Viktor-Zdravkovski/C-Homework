@@ -21,7 +21,8 @@ namespace MovieRental.DataBase.EFImplementations
 
         public Movie GetById(int id)
         {
-            return new Movie { Id = id };
+            //return new Movie { Id = id };
+            return _dbContext.Movie.FirstOrDefault(x => x.Id == id);
         }
         public void Add(Movie entity)
         {
@@ -36,10 +37,10 @@ namespace MovieRental.DataBase.EFImplementations
 
         public void Update(Movie entity)
         {
-            if(entity.Title == null)
-            {
-                entity.Title = _dbContext.Movie.EntityType.Name;
-            }
+            //if (entity.Title == null)
+            //{
+            //    entity.Title = _dbContext.Movie.EntityType.Name;
+            //}
 
             _dbContext.Movie.Update(entity);
             _dbContext.SaveChanges();

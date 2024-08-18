@@ -19,8 +19,8 @@ namespace MovieRental.DataBase.EFImplementations
 
         public Rental GetById(int id)
         {
-            return new Rental { Id = id };
-
+            //return new Rental { Id = id };
+            return _dbContext.Rental.FirstOrDefault(x => x.Id == id);
         }
 
         public void Add(Rental entity)

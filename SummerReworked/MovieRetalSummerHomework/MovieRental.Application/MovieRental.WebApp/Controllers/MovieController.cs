@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieRental.DataBase;
+using MovieRental.DataBase.Interfaces;
 using MovieRental.Domain;
 using MovieRental.Dtos.Dto;
 using MovieRental.Service.Interfaces;
@@ -10,10 +11,13 @@ namespace MovieRental.WebApp.Controllers
     {
         private readonly MovieRentalDbContext _context;
         private readonly IMovieService _movieService;
+        private readonly IRepository<Movie> _movieRepository;
 
-        public MovieController(IMovieService movieService)
+        public MovieController(IMovieService movieService, MovieRentalDbContext context, IRepository<Movie> movieRepo)
         {
             _movieService = movieService;
+            _movieRepository = movieRepo;
+            _context = context;
         }
 
         [HttpGet("allMovies")]
@@ -23,11 +27,74 @@ namespace MovieRental.WebApp.Controllers
             return View(movies);
         }
 
-        [HttpGet("details")]
+        [HttpGet("details/{id}")] // ako ne raboti izbrishi samo /{id}
         public IActionResult GetMovieDetails(int id)
         {
-            var moviebyId = _movieService.GetMovieById(id);
-            return View(moviebyId);
+            //var moviebyId = _movieService.GetMovieById(id);
+            //return View(moviebyId);
+
+            var movieById = _movieService.GetMovieById(id);
+            if (movieById == null)
+            {
+                return NotFound(); // Handle case where the movie is not found
+            }
+            return View(movieById);
         }
+
+        //[HttpPost("RentMovie")]
+        //public IActionResult RentMovie(int id)
+        //{
+        //    //try
+        //    //{
+        //    //    _movieService.RentMovie(id, User.Identity.Name);
+        //    //    return RedirectToAction("RentedMovies", "Movie");
+        //    //}
+        //    //catch (InvalidOperationException ex)
+        //    //{
+        //    //    TempData["ErrorMessage"] = ex.Message;
+        //    //    return RedirectToAction("Index", "Home");
+        //    //}
+
+        //    try
+        //    {
+        //        _movieService.RentMovie(id, User.Identity.Name);
+        //        return RedirectToAction("RentedMovies"); // Redirect to the RentedMovies action
+        //    }
+        //    catch (InvalidOperationException ex)
+        //    {
+        //        TempData["ErrorMessage"] = ex.Message;
+        //        return RedirectToAction("GetAll"); // Redirect to the GetAll action if there is an error
+        //    }
+        //}
+
+        [HttpPost("RentMovie")]
+        public IActionResult RentMovie(int id)
+        {
+            try
+            {
+                _movieService.RentMovie(id, User.Identity.Name);
+                return RedirectToAction("RentedMovies");
+            }
+            catch (InvalidOperationException ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("GetAll"); // Adjusted to redirect to the list of all movies
+            }
+        }
+
+        //public IActionResult RentedMovies()
+        //{
+        //    //var rentedMovies = _movieService.GetRentedMovies(User.Identity.Name);
+        //    //return View(rentedMovies);
+
+        //    var rentedMovies = _movieService.GetRentedMovies(User.Identity.Name);
+        //    return View(rentedMovies);
+        //}
+        public IActionResult RentedMovies()
+        {
+            var rentedMovies = _movieService.GetRentedMovies(User.Identity.Name);
+            return View(rentedMovies); // This view expects a collection of MovieDto
+        }
+
     }
 }

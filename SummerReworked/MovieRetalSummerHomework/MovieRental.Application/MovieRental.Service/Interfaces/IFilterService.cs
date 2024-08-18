@@ -4,12 +4,10 @@ namespace MovieRental.Service.Interfaces
 {
     public interface IFilterService
     {
-        List<MovieDto> GetAllMovies();
-
-        List<UserDto> GetAllUsers();
+        //List<UserDto> GetAllUsers();
 
         RentalDto RentMovie(int movieId, int userId);
 
-        FilterDto GetFilterDetails();
+        //FilterDto GetFilterDetails();
     }
 }

@@ -29,7 +29,7 @@ namespace MovieRental.DataBase
                 new Movie()
                 {
                     Id = 1,
-                    Title = "Action Movie 1",
+                    Title = "DeadPool & Wolverine",
                     Genre = Genre.Action,
                     Language = Language.English,
                     IsAvailable = true,
@@ -42,7 +42,7 @@ namespace MovieRental.DataBase
                 new Movie()
                 {
                     Id = 2,
-                    Title = "Comedy Movie 1",
+                    Title = "Mother of the bride",
                     Genre = Genre.Comedy,
                     Language = Language.Spanish,
                     IsAvailable = true,
@@ -55,7 +55,7 @@ namespace MovieRental.DataBase
                 new Movie()
                 {
                     Id = 3,
-                    Title = "Sci-Fi Movie 1",
+                    Title = "Planet of the Apes",
                     Genre = Genre.SciFi,
                     Language = Language.French,
                     IsAvailable = false,

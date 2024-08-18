@@ -20,9 +20,10 @@ namespace MovieRental.DataBase.EFImplementations
 
         public User GetById(int id)
         {
-            return new User { Id = id };
-
+            //return new User { Id = id };
+            return _dbContext.User.FirstOrDefault(x => x.Id == id);
         }
+
         public void Add(User entity)
         {
             _dbContext.User.Add(entity);

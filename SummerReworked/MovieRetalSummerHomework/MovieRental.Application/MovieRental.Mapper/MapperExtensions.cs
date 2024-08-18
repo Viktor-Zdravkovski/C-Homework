@@ -29,7 +29,7 @@ namespace MovieRental.Mapper
                 MovieId = rent.MovieId,
                 UserId = rent.UserId,
                 RentedOn = rent.RentedOn,
-                ReturnedOn = rent.ReturnedOn.Value,
+                ReturnedOn = rent.ReturnedOn.HasValue ? rent.ReturnedOn.Value : (DateTime?)null
             };
         }
 

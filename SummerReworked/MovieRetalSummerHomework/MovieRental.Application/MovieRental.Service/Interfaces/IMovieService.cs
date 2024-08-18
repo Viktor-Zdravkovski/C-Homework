@@ -12,5 +12,9 @@ namespace MovieRental.Service.Interfaces
         IEnumerable<Movie> IsOverCertainAge(int age);
 
         void UpdateMovieQuantity(int movieId, int newQuantity);
-    }
+
+		void RentMovie(int movieId, string userName);
+
+		IEnumerable<MovieDto> GetRentedMovies(string userName);
+	}
 }

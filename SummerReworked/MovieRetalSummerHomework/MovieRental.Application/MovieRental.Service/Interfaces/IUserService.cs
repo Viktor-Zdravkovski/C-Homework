@@ -6,7 +6,7 @@ namespace MovieRental.Service.Interfaces
 {
     public interface IUserService
     {
-        UserDto GetUserById(int id);
+        //UserDto GetUserById(int id);
 
         UserDto GetCurrentUser(string cardNumber);
 

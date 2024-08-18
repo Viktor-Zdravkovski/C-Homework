@@ -76,7 +76,7 @@ namespace MovieRental.Service
             }
 
             var userExists = _dbContext.User
-            .Any(u => u.CardNumber == cardNumber || u.Email == email);
+                            .Any(u => u.CardNumber == cardNumber || u.Email == email);
 
             return userExists;
         }
@@ -117,16 +117,21 @@ namespace MovieRental.Service
             };
         }
 
-        public UserDto GetUserById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public UserDto GetCurrentUser(string cardNumber)
         {
+            if (string.IsNullOrEmpty(cardNumber))
+            {
+                throw new ArgumentException("Card number cannot be null or empty.", nameof(cardNumber));
+            }
+
             var user = _dbContext.User.FirstOrDefault(u => u.CardNumber == cardNumber);
 
-            return user != null ? new UserDto
+            if (user == null)
+            {
+                return null;
+            }
+
+            return new UserDto
             {
                 Id = user.Id,
                 FullName = user.FullName,
@@ -136,7 +141,7 @@ namespace MovieRental.Service
                 CreatedOn = user.CreatedOn,
                 IsSubscriptionExpired = user.IsSubscriptionExpired,
                 SubscriptionType = user.SubscriptionType
-            } : null;
+            };
         }
     }
 }
